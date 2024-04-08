@@ -40,16 +40,9 @@ yarn-error.*
 expo-env.d.ts
 # @end expo-cli
 
-.vscode
-.expo
-
-/.vscode
-/.expo
-
 .env
-/env
-/.env
 
-/android
-android
-./android
+.vscode
+
+android/
+ios/
