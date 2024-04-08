@@ -53,6 +53,7 @@ export default function TabLayout() {
                     name='calls'
                     options={{
                         title: 'Calls',
+                        headerShown: false,
                         tabBarIcon: ({ size, color }) => (
                             <MaterialCommunityIcons
                                 name='phone-outline'
@@ -81,6 +82,7 @@ export default function TabLayout() {
                     name='chats'
                     options={{
                         title: 'Chats',
+                        headerShown: false,
                         tabBarIcon: ({ size, color }) => (
                             <Ionicons
                                 name='chatbubbles'
@@ -95,6 +97,7 @@ export default function TabLayout() {
                     name='settings'
                     options={{
                         title: 'Settings',
+                        headerShown: false,
                         tabBarIcon: ({ size, color }) => (
                             <Ionicons name='cog' size={size} color={color} />
                         ),
