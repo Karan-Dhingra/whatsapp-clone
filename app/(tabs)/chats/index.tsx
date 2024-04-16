@@ -1,14 +1,30 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, Text, ScrollView, FlatList } from 'react-native'
+import chats from '@/assets/data/chats.json'
+import ChatRow from '@/components/ChatRow'
+import { defaultStyles } from '@/constants/Styles'
 
 const Page = () => {
     return (
-        <View>
-            
-        </View>
-    );
+        <ScrollView
+            contentInsetAdjustmentBehavior='automatic'
+            contentContainerStyle={{
+                paddingBottom: 40,
+                flex: 1,
+                backgroundColor: '#fff',
+            }}
+        >
+            <FlatList
+                data={chats}
+                renderItem={({ item }) => <ChatRow {...item} />}
+                keyExtractor={(item) => item.id.toString()}
+                ItemSeparatorComponent={() => (
+                    <View
+                        style={[defaultStyles.separator, { marginLeft: 90 }]}
+                    />
+                )}
+                scrollEnabled={false}
+            />
+        </ScrollView>
+    )
 }
-
-const styles = StyleSheet.create({})
-
-export default Page;
+export default Page

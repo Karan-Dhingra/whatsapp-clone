@@ -1,6 +1,6 @@
 import React from 'react'
 import FontAwesome from '@expo/vector-icons/FontAwesome'
-import { Link, Tabs } from 'expo-router'
+import { Link, Tabs, useSegments } from 'expo-router'
 import { Pressable } from 'react-native'
 import { useClientOnlyValue } from '@/components/useClientOnlyValue'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
@@ -19,12 +19,17 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
+    const segments = useSegments();
+
     return (
-        <GestureHandlerRootView style={{ flex: 1 }}>
+        <GestureHandlerRootView style={{ flex: 1}}>
             <Tabs
                 screenOptions={{
                     tabBarStyle: {
                         backgroundColor: Colors.background,
+                        height: 60,
+                        paddingBottom: 8,
+                        paddingTop: 5,
                     },
                     tabBarActiveTintColor: Colors.primary,
                     tabBarInactiveBackgroundColor: Colors.background,
@@ -90,6 +95,10 @@ export default function TabLayout() {
                                 color={color}
                             />
                         ),
+                        tabBarStyle: {
+                            backgroundColor: Colors.background,
+                            display: segments[2] === '[id]' ? 'none' : 'flex',
+                        },
                     }}
                 />
 

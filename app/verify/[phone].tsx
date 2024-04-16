@@ -24,11 +24,11 @@ const Page = () => {
 
     const verifyCode = async () => {
         try {
-            await signUp?.attemptPhoneNumberVerification({
+            await signUp!.attemptPhoneNumberVerification({
                 code,
             });
 
-            await setActive!({session: signUp?.createdSessionId})
+            await setActive!({session: signUp!.createdSessionId})
         }catch (error) {
             if(isClerkAPIResponseError(error)){
                 Alert.alert('Error', error.errors[0].message)
@@ -43,7 +43,7 @@ const Page = () => {
                 code
             });
 
-            await setActive!({session: signIn?.createdSessionId})
+            await setActive!({session: signIn!.createdSessionId})
         }catch (error) {
             if(isClerkAPIResponseError(error)){
                 Alert.alert('Error', error.errors[0].message)

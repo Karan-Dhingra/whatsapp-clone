@@ -76,7 +76,7 @@ const Page = () => {
         <ScrollView
             contentInsetAdjustmentBehavior='automatic'
         >
-            <View style={defaultStyles.block}>
+            <View style={[defaultStyles.block, {marginTop: 20}]}>
                 <FlatList data={devices}
                     scrollEnabled={false}
                     ItemSeparatorComponent={() => <View style={defaultStyles.separator} />}
@@ -90,7 +90,7 @@ const Page = () => {
                 />
             </View>
 
-            <View style={defaultStyles.block}>
+            <View style={[defaultStyles.block, {marginTop: 20}]}>
                 <FlatList data={items}
                     scrollEnabled={false}
                     ItemSeparatorComponent={() => <View style={defaultStyles.separator} />}
@@ -104,7 +104,7 @@ const Page = () => {
                 />
             </View>
 
-            <View style={defaultStyles.block}>
+            <View style={[defaultStyles.block, {marginTop: 20}]}>
                 <FlatList data={support}
                     scrollEnabled={false}
                     ItemSeparatorComponent={() => <View style={defaultStyles.separator} />}

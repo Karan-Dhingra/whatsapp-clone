@@ -1,5 +1,5 @@
 import Colors from '@/constants/Colors'
-import { isClerkAPIResponseError, useSignIn, useSignUp } from '@clerk/clerk-expo'
+import { isClerkAPIResponseError, useAuth, useSignIn, useSignUp } from '@clerk/clerk-expo'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 import React, { useState } from 'react'
@@ -37,6 +37,7 @@ const IND_PHONE = [
 const Page = () => {
     const {signUp} = useSignUp()
     const {signIn} = useSignIn()
+    const {isSignedIn} = useAuth()
 
     const [loading, setLoading] = useState(false)
     const [phoneNumber, setPhoneNumber] = useState('')
@@ -48,6 +49,11 @@ const Page = () => {
     }
 
     const sendOTP = async() => {
+        if(isSignedIn){
+            router.replace('/(tabs)/calls')
+            return
+        }
+
         setLoading(true)
 
         try {
@@ -56,7 +62,6 @@ const Page = () => {
             signUp?.preparePhoneNumberVerification()
             router.push(`/verify/${phoneNumber}`)
         } catch (error) {
-            console.log(error)
             if(isClerkAPIResponseError(error)){
                 if(error.errors[0].code === 'form_identifier_exists'){
                     console.log('user exists');
@@ -85,7 +90,7 @@ const Page = () => {
             phoneNumberId
         })
 
-        router.push(`/verify/${phoneNumber}?signIn=true`)
+        router.push(`/verify/${phoneNumber}?signin=true`)
         setLoading(false)
     }
 

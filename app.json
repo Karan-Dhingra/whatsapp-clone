@@ -23,8 +23,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yourcompany.yourappname",
-      "versionCode": 1
+      "package": "com.dhin.whatsappclone"
     },
     "web": {
       "bundler": "metro",

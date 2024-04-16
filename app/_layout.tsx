@@ -2,10 +2,12 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
-import { Stack, useRouter, useSegments } from 'expo-router';
+import { Link, Stack, useRouter, useSegments } from 'expo-router';
 import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
 import * as SecureStore from 'expo-secure-store'
-import { View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import Colors from '@/constants/Colors';
+import { Ionicons } from '@expo/vector-icons';
 
 SplashScreen.preventAutoHideAsync();
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY
@@ -69,6 +71,29 @@ const InitialLayout = () => {
       <Stack.Screen name="otp" options={{ headerTitle: 'Enter your Phone Number', headerBackVisible: false }} />
       <Stack.Screen name="verify/[phone]" options={{ headerTitle: 'Verify your Phone Number', headerBackTitle: 'Edit Number' }} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(modals)/new-chat"
+        options={{
+          presentation: 'modal',
+          title: 'New Chat',
+          headerTransparent: true,
+          headerBlurEffect: 'regular',
+          headerTintColor: '#000',
+          headerStyle: {
+            backgroundColor: Colors.background,
+          },
+          headerSearchBarOptions: {
+            placeholder: 'Search name or number',
+            hideWhenScrolling: false
+          },
+          headerRight: () => (
+            <Link href={`/(tabs)/chats`} asChild>
+              <TouchableOpacity style={{backgroundColor: Colors.lightGray, borderRadius: 20, padding: 4}}>
+                <Ionicons name='close' color={Colors.gray} size={30} />
+              </TouchableOpacity>
+            </Link>
+          )
+        }}
+      />
     </Stack>
   )
 }
